@@ -17,7 +17,7 @@ public class RealmDemoApp extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        RealmConfiguration config = new RealmConfiguration();
+        RealmConfiguration config = new RealmConfiguration.Builder(getApplicationContext()).setModules(new DemoRealmModule()).build();
         Realm.setDefaultConfiguration(config);
     }
 

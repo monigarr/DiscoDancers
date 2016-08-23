@@ -8,9 +8,14 @@ public interface RealmTable {
 
     String ID = "id";
 
+    interface Disco {
+        String PERSONS = "persons";
+        String NAME = "name";
+    }
+
     interface Person {
-        String FIRSTNAME = "firstName";
-        String LASTNAME = "lastName";
+        String NAME = "name";
+        String LASTNAME = "lastname";
         String DOB = "dob";
         String ZIPCODE = "zipcode";
     }

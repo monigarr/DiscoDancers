@@ -1,7 +1,6 @@
 package com.monigarr.servicefusionrealmdemo.view.dialogs;
 
 import android.content.Context;
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,7 +61,7 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
             case R.id.buttonAdd: {
                 if (isUserInfoValidate()) {
                     Person person = new Person();
-                    person.setFirstName(etFirstName.getText().toString());
+                    person.setName(etFirstName.getText().toString());
                     person.setLastName(etLastName.getText().toString());
                     person.setDob(etDob.getText().toString());
                     person.setZipcode(etZipcode().toString());
@@ -90,15 +89,21 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
                 d.show((getActivity()).getFragmentManager(), this.getClass().getName());
                 break;
             }
-            }
         }
     }
 
     private boolean isUserInfoValidate() {
-        return !etFirstName.getText().toString().isEmpty() && !etLastName.getText().toString().isEmpty() && !etDob.getText().toString().isEmpty() && !etZipcode.getText().toString().isEmpty();
+        return !etFirstName.getText().toString().isEmpty() &&
+                !etLastName.getText().toString().isEmpty() &&
+                !etDob.getText().toString().isEmpty() &&
+                !etZipcode.getText().toString().isEmpty();
     }
 
     public void setListener(OnAddPersonClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnAddPersonClickListener {
         void onAddPersonClickListener(Person person);
     }
 }

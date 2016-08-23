@@ -1,12 +1,17 @@
 package com.monigarr.servicefusionrealmdemo.presenters.impl;
 
+import com.monigarr.servicefusionrealmdemo.model.Disco;
 import com.monigarr.servicefusionrealmdemo.model.Person;
 import com.monigarr.servicefusionrealmdemo.presenters.IPersonPresenter;
+import com.monigarr.servicefusionrealmdemo.realm.repository.IDiscoRepository;
 import com.monigarr.servicefusionrealmdemo.realm.repository.IPersonRepository;
+import com.monigarr.servicefusionrealmdemo.realm.repository.impl.DiscoRepository;
 import com.monigarr.servicefusionrealmdemo.realm.repository.impl.PersonRepository;
-import com.monigarr.servicefusionrealmdemo.view.activity.PeopleActivity;
+import com.monigarr.servicefusionrealmdemo.view.base.PeopleActivity;
+
 import io.realm.RealmList;
 import io.realm.RealmResults;
+
 
 /**
  * Created by monigarr on 8/22/16.
@@ -18,15 +23,18 @@ public class PersonPresenter implements IPersonPresenter {
 
     private IPersonRepository.OnDeletePersonCallback onDeletePersonCallback;
     private IPersonRepository.OnSavePersonCallback onSavePersonCallback;
-    private IPersonRepository.OnGetAllPeopleCallback onGetAllPeopleCallback;
+    private IPersonRepository.OnGetAllPersonsCallback onGetAllPersonsCallback;
     private IPersonRepository.OnGetPersonByIdCallback onGetPersonByIdCallback;
-    private IPersonRepository.OnGetPeopleCallback onGetPeopleCallback;
+    private IPersonRepository.OnGetPersonsByDiscoIdCallback onGetPersonsByDiscoIdCallback;
+    private IDiscoRepository.OnGetDiscoByIdCallback onGetDiscoByIdCallback;
 
     private IPersonRepository personRepository;
+    private IDiscoRepository discoRepository;
 
     public PersonPresenter(PeopleActivity view) {
         this.view = view;
         personRepository = new PersonRepository();
+        discoRepository = new DiscoRepository();
     }
 
     @Override
@@ -35,18 +43,38 @@ public class PersonPresenter implements IPersonPresenter {
     }
 
     @Override
+    public void addPersonByDiscoId(Person person, String discoId) {
+        personRepository.addPersonByDiscoId(person, discoId, onSavePersonCallback);
+    }
+
+    @Override
+    public void deletePersonByPosition(int position) {
+        personRepository.deletePersonByPosition(position, onDeletePersonCallback);
+    }
+
+    @Override
     public void deletePersonById(String personId) {
         personRepository.deletePersonById(personId, onDeletePersonCallback);
     }
 
     @Override
-    public void getAllPeople() {
-        personRepository.getAllPeople(onGetAllPeopleCallback);
+    public void getAllPersons() {
+        personRepository.getAllPersons(onGetAllPersonsCallback);
     }
 
     @Override
     public void getPersonById(String id) {
         personRepository.getPersonById(id, onGetPersonByIdCallback);
+    }
+
+    @Override
+    public void getPersonsByDiscoId(String id) {
+        personRepository.getPersonsByDiscoId(id, onGetPersonsByDiscoIdCallback);
+    }
+
+    @Override
+    public void getDiscoById(String id) {
+        discoRepository.getDiscoById(id, onGetDiscoByIdCallback);
     }
 
     @Override
@@ -73,9 +101,9 @@ public class PersonPresenter implements IPersonPresenter {
                 view.showMessage(message);
             }
         };
-        onGetAllPeopleCallback = new IPersonRepository.OnGetAllStudentsCallback() {
+        onGetAllPersonsCallback = new IPersonRepository.OnGetAllPersonsCallback() {
             @Override
-            public void onSuccess(RealmResults<Person> people) {
+            public void onSuccess(RealmResults<Person> persons) {
 
             }
 
@@ -95,23 +123,14 @@ public class PersonPresenter implements IPersonPresenter {
 
             }
         };
-        onGetPeopleCallback = new IPersonRepository.OnGetPeopleCallback() {
-            @Override
-            public void onSuccess(RealmList<Person> people) {
-                view.showPeople(people);
-            }
-
-            @Override
-            public void onError(String message) {
-                view.showMessage(message);
-            }
-        };
     }
 
-    @Override void unSubscribeCallbacks() {
+    @Override
+    public void unSubscribeCallbacks() {
         onDeletePersonCallback = null;
         onSavePersonCallback = null;
-        onGetAllPeopleCallback = null;
+        onGetAllPersonsCallback = null;
+        onGetPersonsByDiscoIdCallback = null;
         onGetPersonByIdCallback = null;
     }
 }

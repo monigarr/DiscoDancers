@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.base.PeopleActivity">
+    tools:context=".view.base.DiscoActivity"
+    >
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_people"
+        android:id="@+id/rv_discos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

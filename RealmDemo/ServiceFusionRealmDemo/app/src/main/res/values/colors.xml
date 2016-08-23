@@ -4,13 +4,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="darkest"></color>
-    <color name="darkee"></color>
-    <color name="dark"></color>
-    <color name="medium"></color>
-    <color name="light"></color>
-    <color name="lighter"></color>
-    <color name="lightest"></color>
+    <color name="darkest">#000000</color>
+    <color name="darkee">#000000</color>
+    <color name="dark">#000000</color>
+    <color name="medium">#000000</color>
+    <color name="light">#FFFFFF</color>
+    <color name="lighter">#FFFFFF</color>
+    <color name="lightest">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 </resources>

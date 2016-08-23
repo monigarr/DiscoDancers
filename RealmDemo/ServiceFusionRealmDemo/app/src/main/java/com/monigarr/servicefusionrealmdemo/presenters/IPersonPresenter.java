@@ -6,11 +6,14 @@ import com.monigarr.servicefusionrealmdemo.model.Person;
  * Created by monigarr on 8/22/16.
  */
 
-public class IPersonPresenter extends IBasePresenter {
+public interface IPersonPresenter extends IBasePresenter {
 
     void addPerson(Person person);
-    void deletePersonById(int personId);
-    void getAllPeople();
-    void getPeopleById(String id);
-
+    void addPersonByDiscoId(Person person, String discoId);
+    void deletePersonByPosition(int position);
+    void deletePersonById(String personId);
+    void getAllPersons();
+    void getAllPersonsByDiscoId(String id);
+    void getPersonById(String id);
+    void getDiscoById(String id);
 }

@@ -20,23 +20,32 @@ public interface IPersonRepository {
         void onError(String message);
     }
 
+
     interface OnGetPersonByIdCallback {
         void onSuccess(Person person);
         void onError(String message);
     }
 
-    interface OnGetAllPeopleCallback {
-        void onSuccess(RealmResults<Person> people);
+    interface OnGetAllPersonsCallback {
+        void onSuccess(RealmResults<Person> persons);
+        void onError(String message);
+    }
+
+    interface OnGetPersonsByDiscoIdCallback {
+        void onSuccess(RealmResults<Person> persons);
         void onError(String message);
     }
 
     interface OnGetPeopleCallback {
-        void onSuccess(RealmResults<Person> people);
+        void onSuccess(RealmResults<Person> persons);
         void onError(String message);
     }
 
     void addPerson(Person person, OnSavePersonCallback callback);
-    void addPersonById(String id, OnDeletePersonCallback callback);
-    void deletePersonById(String id, OnDeletePersonCallback);
-    void getAllPeople(OnGetAllPeopleCallback callback);
+    void addPersonByDiscoId(Person person, String discoId, OnSavePersonCallback callback);
+    void deletePersonById(String id, OnDeletePersonCallback callback);
+    void deletePersonByPosition(int position, OnDeletePersonCallback callback);
+    void getAllPersons(OnGetAllPersonsCallback callback);
+    void getPersonsByDiscoId(String id, OnGetPersonsByDiscoIdCallback callback);
+    void getPersonById(String id, OnGetPersonByIdCallback callback);
 }

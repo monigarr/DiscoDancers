@@ -2,6 +2,7 @@ package com.monigarr.servicefusionrealmdemo.realm.repository.impl;
 
 import com.monigarr.servicefusionrealmdemo.app.RealmDemoApp;
 import com.monigarr.servicefusionrealmdemo.model.Person;
+import com.monigarr.servicefusionrealmdemo.model.Disco;
 import com.monigarr.servicefusionrealmdemo.realm.repository.IPersonRepository;
 import com.monigarr.servicefusionrealmdemo.realm.table.RealmTable;
 
@@ -22,12 +23,34 @@ public class PersonRepository implements IPersonRepository {
     public void addPerson(Person person, OnSavePersonCallback callback) {
         Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         realm.beginTransaction();
+
         Person realmPerson = realm.createObject(Person.class);
         realmPerson.setId(UUID.randomUUID().toString());
-        realmPerson.setFirstName(person.getFirstName());
+        realmPerson.setName(person.getName());
         realmPerson.setLastName(person.getLastName());
         realmPerson.setDob(person.getDob());
         realmPerson.setZipcode(person.getZipcode());
+        realm.commitTransaction();
+
+        if (callback != null)
+            callback.onSuccess();
+    }
+
+    @Override
+    public void addPersonByDiscoId(Person person, String discoId, OnSavePersonCallback callback) {
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
+        realm.beginTransaction();
+
+        Person realmPerson = realm.createObject(Person.class);
+        realmPerson.setId(UUID.randomUUID().toString());
+        realmPerson.setName(person.getName());
+        realmPerson.setLastName(person.getLastName());
+        realmPerson.setDob(person.getDob());
+        realmPerson.setZipcode(person.getZipcode());
+
+        Disco disco = realm.where(Disco.class).equalTo(RealmTable.ID, discoId).findFirst();
+        disco.getPersons().add(realmPerson);
+
         realm.commitTransaction();
 
         if (callback != null)
@@ -47,12 +70,36 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public void getAllPeople(OnGetAllPeopleCallback callback) {
+    public void deletePersonByPosition(int position, OnDeletePersonCallback callback) {
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
+        realm.beginTransaction();
+        RealmQuery<Person> query = realm.where(Person.class);
+        RealmResults<Person> results = query.findAll();
+        results.remove(position);
+        realm.commitTransaction();
+
+        if (callback != null)
+            callback.onSuccess();
+    }
+
+    @Override
+    public void getAllPersons(OnGetAllPersonsCallback callback) {
         Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         RealmResults<Person> results = realm.where(Person.class).findAll();
 
         if (callback != null)
             callback.onSuccess(results);
+    }
+
+    @Override
+    public void getAllPersonsByDiscoId(String id, OnGetPersonsCallback callback) {
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
+        Disco disco = realm.where(Disco.class).equalTo(RealmTable.ID, id).findFirst();
+        RealmList<Person> persons = disco.getPersons();
+
+        if (callback != null)
+            callback.onSuccess(persons);
+
     }
 
     @Override

@@ -11,38 +11,34 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.monigarr.servicefusionrealmdemo.R;
-import com.monigarr.servicefusionrealmdemo.model.Person;
-import com.monigarr.servicefusionrealmdemo.presenters.IPersonPresenter;
-import com.monigarr.servicefusionrealmdemo.presenters.impl.PersonPresenter;
+import com.monigarr.servicefusionrealmdemo.model.Disco;
+import com.monigarr.servicefusionrealmdemo.presenters.IDiscoPresenter;
+import com.monigarr.servicefusionrealmdemo.presenters.impl.DiscoPresenter;
 import com.monigarr.servicefusionrealmdemo.realm.table.RealmTable;
-import com.monigarr.servicefusionrealmdemo.view.base.BaseActivity;
-import com.monigarr.servicefusionrealmdemo.view.adapters.PeopleAdapter;
-import com.monigarr.servicefusionrealmdemo.view.dialogs.AddPersonDialog;
+import com.monigarr.servicefusionrealmdemo.view.adapters.DiscoAdapter;
+import com.monigarr.servicefusionrealmdemo.view.dialogs.AddDiscoDialog;
 
 import io.realm.RealmResults;
-
-import static com.monigarr.servicefusionrealmdemo.R.string.people;
 
 /**
  * Created by monigarr on 8/22/16.
  */
 
-public class PersonActivity extends BaseActivity implements View.OnClickListener {
+public class DiscoActivity extends BaseActivity implements View.OnClickListener {
 
     private FloatingActionButton fbAdd;
-    private RecyclerView rvUniversities;
-    private PeopleAdapter adapter;
+    private RecyclerView rvDiscos;
+    private DiscoAdapter adapter;
 
-    private IPersonPresenter presenter;
-
-    private RealmResults<Person> persons;
+    private IDiscoPresenter presenter;
+    private RealmResults<Disco> discos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_people);
+        setContentView(R.layout.activity_discos);
 
-        presenter = new PersonPresenter(this);
+        presenter = new DiscoPresenter(this);
 
         initComponents();
     }
@@ -51,7 +47,7 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
     protected void onStart() {
         super.onStart();
         presenter.subscribeCallbacks();
-        presenter.getAllPersons();
+        presenter.getAllDiscos();
     }
 
     @Override
@@ -63,9 +59,9 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initComponents() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(people);
+        toolbar.setTitle(R.string.discos);
         setSupportActionBar(toolbar);
-        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_person);
+        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_disco);
         fbAdd.setOnClickListener(this);
         initRecyclerListener();
     }
@@ -73,7 +69,7 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fab_add_person: {
+            case R.id.fab_add_disco: {
                 showAddUniversityDialog();
                 break;
             }
@@ -81,9 +77,9 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initRecyclerListener() {
-        rvUniversities = (RecyclerView) findViewById(R.id.rv_people);
-        rvUniversities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rvUniversities.setItemAnimator(new DefaultItemAnimator());
+        rvDiscos = (RecyclerView) findViewById(R.id.rv_discos);
+        rvDiscos.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvDiscos.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -94,17 +90,17 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                presenter.deletePersonById(persons.get(viewHolder.getAdapterPosition()).getId());
+                presenter.deleteDiscoById(discos.get(viewHolder.getAdapterPosition()).getId());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
-        swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);
+        swipeToDismissTouchHelper.attachToRecyclerView(rvDiscos);
     }
 
-    public void showUniversities(RealmResults<Person> universities) {
-        this.persons = universities;
-        adapter = new PersonAdapter(universities);
-        adapter.setOnItemClickListener(new PersonAdapter.OnItemClickListener() {
+    public void showDiscos(RealmResults<Disco> discos) {
+        this.discos = discos;
+        adapter = new DiscoAdapter(discos);
+        adapter.setOnItemClickListener(new DiscoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String id) {
                 Intent intent = new Intent(getApplicationContext(), PeopleActivity.class);
@@ -112,17 +108,17 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
                 startActivity(intent);
             }
         });
-        rvUniversities.setAdapter(adapter);
+        rvDiscos.setAdapter(adapter);
     }
 
     private void showAddUniversityDialog() {
-        final AddPersonDialog dialog = new AddPersonDialog();
+        final AddDiscoDialog dialog = new AddDiscoDialog();
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-        dialog.setListener(new AddPersonDialog.OnAddUniversityClickListener() {
+        dialog.setListener(new AddDiscoDialog.OnAddDiscoClickListener() {
             @Override
-            public void onAddUniversityClickListener(String universityName) {
+            public void onAddDiscoClickListener(String discoName) {
                 dialog.dismiss();
-                presenter.addPerson(personName);
+                presenter.addDisco(discoName);
             }
         });
     }
