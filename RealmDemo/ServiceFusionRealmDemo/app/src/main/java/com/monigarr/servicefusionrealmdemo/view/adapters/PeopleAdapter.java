@@ -7,13 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.monigarr.servicefusionrealmdemo.R;
-import com.monigarr.servicefusionrealmdemo.app.RealmDemoApp;
 import com.monigarr.servicefusionrealmdemo.model.Person;
 import com.monigarr.servicefusionrealmdemo.tools.DateFormat;
 
 import io.realm.RealmList;
-
-import static com.monigarr.servicefusionrealmdemo.R.string.people;
 
 /**
  * Created by monigarr on 8/22/16.
@@ -38,7 +35,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonView
         holder.tvFirstname.setText(persons.get(position).getName());
         holder.tvLastname.setText(persons.get(position).getLastName());
         holder.tvZipcode.setText(persons.get(position).getZipcode());
-        String dob = "Dob :" + " " + DateFormatter.convertDateToString(persons.get(position).getDob());
+        String dob = "Dob :" + " " + DateFormat.convertDateToString(persons.get(position).getDob());
         holder.tvDob.setText(dob);
     }
 
@@ -55,10 +52,10 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonView
 
         public PersonViewHolder(View itemView) {
             super(itemView);
-            tvFirstname = (TextView) itemView.findViewById(R.id.tvFirstname);
-            tvLastname = (TextView) itemView.findViewById(R.id.tvLastname);
-            tvDob = (TextView) itemView.findViewById(R.id.tvDob);
-            tvZipcode = (TextView) itemView.findViewById(R.id.tvZipcode);
+            tvFirstname = (TextView) itemView.findViewById(R.id.et_firstname);
+            tvLastname = (TextView) itemView.findViewById(R.id.et_lastname);
+            tvDob = (TextView) itemView.findViewById(R.id.et_dob);
+            tvZipcode = (TextView) itemView.findViewById(R.id.et_zipcode);
 
         }
     }

@@ -1,13 +1,11 @@
 package com.monigarr.servicefusionrealmdemo.view.dialogs;
 
-import android.content.Context;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -58,35 +56,35 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonAdd: {
+            case R.id.bt_add: {
                 if (isUserInfoValidate()) {
                     Person person = new Person();
                     person.setName(etFirstName.getText().toString());
                     person.setLastName(etLastName.getText().toString());
-                    person.setDob(etDob.getText().toString());
-                    person.setZipcode(etZipcode().toString());
+                    person.setDob(date);
+                    person.setZipcode(etZipcode.getText().toString());
                     listener.onAddPersonClickListener(person);
                 }
                 break;
             }
-            case R.id.etDob: {
+            case R.id.et_dob: {
                 Calendar now = Calendar.getInstance();
-                final DatePickerDialog d = DatePickerDialog.newInstance(
+                final DatePickerDialog dateDialog = DatePickerDialog.newInstance(
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
-                            public void onDateSet(DatePickerDialog datePickerDialog, int year, int monthOfYear, int dayOfMOnth) {
+                            public void onDateSet(DatePickerDialog datePickerDialog, int year, int monthOfYear, int dayOfMonth) {
                                 Calendar checkedCalendar = Calendar.getInstance();
                                 checkedCalendar.set(year, monthOfYear, dayOfMonth);
                                 date = checkedCalendar.getTime();
-                                etDob.setText(DateFormatter.convertDateToString(date));
+                                etDob.setText(DateFormat.convertDateToString(date));
                             }
                         },
                         now.get(Calendar.YEAR),
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
                 );
-                d.setMaxDate(now);
-                d.show((getActivity()).getFragmentManager(), this.getClass().getName());
+                dateDialog.setMaxDate(now);
+                dateDialog.show((getActivity()).getFragmentManager(), this.getClass().getName());
                 break;
             }
         }

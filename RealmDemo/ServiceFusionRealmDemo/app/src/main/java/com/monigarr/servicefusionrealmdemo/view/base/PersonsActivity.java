@@ -1,12 +1,11 @@
 package com.monigarr.servicefusionrealmdemo.view.base;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
@@ -15,11 +14,10 @@ import com.monigarr.servicefusionrealmdemo.model.Person;
 import com.monigarr.servicefusionrealmdemo.presenters.IPersonPresenter;
 import com.monigarr.servicefusionrealmdemo.presenters.impl.PersonPresenter;
 import com.monigarr.servicefusionrealmdemo.realm.table.RealmTable;
-import com.monigarr.servicefusionrealmdemo.view.base.BaseActivity;
 import com.monigarr.servicefusionrealmdemo.view.adapters.PeopleAdapter;
 import com.monigarr.servicefusionrealmdemo.view.dialogs.AddPersonDialog;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 import static com.monigarr.servicefusionrealmdemo.R.string.people;
 
@@ -27,31 +25,41 @@ import static com.monigarr.servicefusionrealmdemo.R.string.people;
  * Created by monigarr on 8/22/16.
  */
 
-public class PersonActivity extends BaseActivity implements View.OnClickListener {
-
-    private FloatingActionButton fbAdd;
-    private RecyclerView rvUniversities;
-    private PeopleAdapter adapter;
+public class PersonsActivity extends BaseActivity implements View.OnClickListener {
 
     private IPersonPresenter presenter;
-
-    private RealmResults<Person> persons;
+    private FloatingActionButton fbAdd;
+    private RecyclerView rvPeople;
+    private PeopleAdapter adapter;
+    private RealmList<Person> persons;
+    private String discoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people);
-
         presenter = new PersonPresenter(this);
+        discoId = getIntent().getStringExtra(RealmTable.ID);
 
         initComponents();
+    }
+    @Override
+    protected void initComponents() {
+        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_person);
+        fbAdd.setOnClickListener(this);
+        initRecyclerListener();
+    }
+
+    public void updateToolbarTittle(String title) {
+        getSupportActionBar().setTitle(getString(people) + " - " + title);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.subscribeCallbacks();
-        presenter.getAllPersons();
+        presenter.getDiscoById(discoId);
+        presenter.getAllPersonsByDiscoId(discoId);
     }
 
     @Override
@@ -61,33 +69,24 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
     }
 
     @Override
-    protected void initComponents() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(people);
-        setSupportActionBar(toolbar);
-        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_person);
-        fbAdd.setOnClickListener(this);
-        initRecyclerListener();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_add_person: {
-                showAddUniversityDialog();
+                showAddPersonDialog();
                 break;
             }
         }
     }
 
     private void initRecyclerListener() {
-        rvUniversities = (RecyclerView) findViewById(R.id.rv_people);
-        rvUniversities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rvUniversities.setItemAnimator(new DefaultItemAnimator());
+        rvPeople = (RecyclerView) findViewById(R.id.rv_people);
+        rvPeople.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvPeople.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
+
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
@@ -98,33 +97,26 @@ public class PersonActivity extends BaseActivity implements View.OnClickListener
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
-        swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);
+        swipeToDismissTouchHelper.attachToRecyclerView(rvPeople);
     }
 
-    public void showUniversities(RealmResults<Person> universities) {
-        this.persons = universities;
-        adapter = new PersonAdapter(universities);
-        adapter.setOnItemClickListener(new PersonAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(String id) {
-                Intent intent = new Intent(getApplicationContext(), PeopleActivity.class);
-                intent.putExtra(RealmTable.ID, id);
-                startActivity(intent);
-            }
-        });
-        rvUniversities.setAdapter(adapter);
-    }
-
-    private void showAddUniversityDialog() {
+    private void showAddPersonDialog() {
         final AddPersonDialog dialog = new AddPersonDialog();
-        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-        dialog.setListener(new AddPersonDialog.OnAddUniversityClickListener() {
+        //FragmentManager fm = getActivity().getFragmentManager();
+        dialog.show(getFragmentManager(), dialog.getClass().getName());
+        dialog.setListener(new AddPersonDialog.OnAddPersonClickListener() {
             @Override
-            public void onAddUniversityClickListener(String universityName) {
+            public void onAddPersonClickListener(Person person) {
                 dialog.dismiss();
-                presenter.addPerson(personName);
+                presenter.addPersonByDiscoId(person, discoId);
+                presenter.getAllPersonsByDiscoId(discoId);
             }
         });
     }
 
+    public void showPersons(RealmList<Person> persons) {
+        this.persons = persons;
+        adapter = new PeopleAdapter(persons);
+        rvPeople.setAdapter(adapter);
+    }
 }

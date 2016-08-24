@@ -1,5 +1,6 @@
 package com.monigarr.servicefusionrealmdemo.realm.repository.impl;
 
+import com.monigarr.servicefusionrealmdemo.app.RealmDemoApp;
 import com.monigarr.servicefusionrealmdemo.model.Disco;
 import com.monigarr.servicefusionrealmdemo.realm.repository.IDiscoRepository;
 import com.monigarr.servicefusionrealmdemo.realm.table.RealmTable;
@@ -18,7 +19,7 @@ public class DiscoRepository implements IDiscoRepository {
 
     @Override
     public void addDisco(Disco disco, OnAddDiscoCallback callback) {
-        Realm realm = Realm.getInstance(DemoRealmApp.getInstance());
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         realm.beginTransaction();
         Disco d = realm.createObject(Disco.class);
         d.setId(UUID.randomUUID().toString());
@@ -31,7 +32,7 @@ public class DiscoRepository implements IDiscoRepository {
 
     @Override
     public void deleteDiscoById(String Id, OnDeleteDiscoCallback callback) {
-        Realm realm = Realm.getInstance(DemoRealmApp.getInstance());
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         realm.beginTransaction();
         Disco disco = realm.where(Disco.class).equalTo(RealmTable.ID, Id).findFirst();
         disco.removeFromRealm();
@@ -43,7 +44,7 @@ public class DiscoRepository implements IDiscoRepository {
 
     @Override
     public void deleteDiscoByPosition(int position, OnDeleteDiscoCallback callback) {
-        Realm realm = Realm.getInstance(DemoRealmApp.getInstance());
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         realm.beginTransaction();
         RealmQuery<Disco> query = realm.where(Disco.class);
         RealmResults<Disco> results = query.findAll();
@@ -56,7 +57,7 @@ public class DiscoRepository implements IDiscoRepository {
 
     @Override
     public void getDiscoById(String id, OnGetDiscoByIdCallback callback) {
-        Realm realm = Realm.getInstance(DemoRealmApp.getInstance());
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         Disco result = realm.where(Disco.class).equalTo(RealmTable.ID, id).findFirst();
 
         if (callback != null)
@@ -65,7 +66,7 @@ public class DiscoRepository implements IDiscoRepository {
 
     @Override
     public void getAllDiscos(OnGetAllDiscoCallback callback) {
-        Realm realm = Realm.getInstance(DemoRealmApp.getInstance());
+        Realm realm = Realm.getInstance(RealmDemoApp.getInstance());
         RealmQuery<Disco> query = realm.where(Disco.class);
         RealmResults<Disco> results = query.findAll();
 

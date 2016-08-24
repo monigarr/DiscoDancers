@@ -49,8 +49,8 @@ public class AddDiscoDialog extends DialogFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_add_disco: {
-                if (isUniversityInfoValid())
-                    listener.onAddUniversityClickListener(etDiscoName.getText().toString());
+                if (isDiscoInfoValid())
+                    listener.onAddDiscoClickListener(etDiscoName.getText().toString());
                 break;
             }
         }

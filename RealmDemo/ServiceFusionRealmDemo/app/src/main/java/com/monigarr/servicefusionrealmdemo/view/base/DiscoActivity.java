@@ -29,7 +29,6 @@ public class DiscoActivity extends BaseActivity implements View.OnClickListener 
     private FloatingActionButton fbAdd;
     private RecyclerView rvDiscos;
     private DiscoAdapter adapter;
-
     private IDiscoPresenter presenter;
     private RealmResults<Disco> discos;
 
@@ -70,7 +69,7 @@ public class DiscoActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_add_disco: {
-                showAddUniversityDialog();
+                showAddDiscoDialog();
                 break;
             }
         }
@@ -103,7 +102,7 @@ public class DiscoActivity extends BaseActivity implements View.OnClickListener 
         adapter.setOnItemClickListener(new DiscoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String id) {
-                Intent intent = new Intent(getApplicationContext(), PeopleActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PersonsActivity.class);
                 intent.putExtra(RealmTable.ID, id);
                 startActivity(intent);
             }
@@ -111,7 +110,7 @@ public class DiscoActivity extends BaseActivity implements View.OnClickListener 
         rvDiscos.setAdapter(adapter);
     }
 
-    private void showAddUniversityDialog() {
+    private void showAddDiscoDialog() {
         final AddDiscoDialog dialog = new AddDiscoDialog();
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
         dialog.setListener(new AddDiscoDialog.OnAddDiscoClickListener() {

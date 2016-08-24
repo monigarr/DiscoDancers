@@ -42,7 +42,7 @@ public class Disco extends RealmObject {
         return persons;
     }
 
-    public void setPeople(RealmList<Person> persons) {
+    public void setPersons(RealmList<Person> persons) {
         this.persons = persons;
     }
 }

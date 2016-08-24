@@ -5,7 +5,6 @@ package com.monigarr.servicefusionrealmdemo.presenters;
  */
 
 public interface IBasePresenter {
-
     void subscribeCallbacks();
-    void unsubscribeCallbacks();
+    void unSubscribeCallbacks();
 }

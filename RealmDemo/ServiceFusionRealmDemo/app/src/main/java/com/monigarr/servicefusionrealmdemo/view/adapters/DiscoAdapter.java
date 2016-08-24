@@ -8,10 +8,7 @@ import android.widget.TextView;
 
 import com.monigarr.servicefusionrealmdemo.R;
 import com.monigarr.servicefusionrealmdemo.model.Disco;
-import com.monigarr.servicefusionrealmdemo.presenters.impl.DiscoPresenter;
-import com.monigarr.servicefusionrealmdemo.view.base.DiscoActivity;
 
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -29,7 +26,7 @@ public class DiscoAdapter extends RecyclerView.Adapter<DiscoAdapter.DiscoViewHol
 
     @Override
     public DiscoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_university, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_disco, parent, false);
         return new DiscoViewHolder(view);
     }
 
@@ -56,7 +53,7 @@ public class DiscoAdapter extends RecyclerView.Adapter<DiscoAdapter.DiscoViewHol
 
         @Override
         public void onClick(View v) {
-            Disco university = discos.get(getAdapterPosition());
+            Disco disco = discos.get(getAdapterPosition());
             onItemClickListener.onItemClick(disco.getId());
         }
     }

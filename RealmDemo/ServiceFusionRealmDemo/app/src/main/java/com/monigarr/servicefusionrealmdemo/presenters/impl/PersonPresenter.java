@@ -7,7 +7,7 @@ import com.monigarr.servicefusionrealmdemo.realm.repository.IDiscoRepository;
 import com.monigarr.servicefusionrealmdemo.realm.repository.IPersonRepository;
 import com.monigarr.servicefusionrealmdemo.realm.repository.impl.DiscoRepository;
 import com.monigarr.servicefusionrealmdemo.realm.repository.impl.PersonRepository;
-import com.monigarr.servicefusionrealmdemo.view.base.PeopleActivity;
+import com.monigarr.servicefusionrealmdemo.view.base.PersonsActivity;
 
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -19,19 +19,19 @@ import io.realm.RealmResults;
 
 public class PersonPresenter implements IPersonPresenter {
 
-    private PeopleActivity view;
+    private PersonsActivity view;
 
     private IPersonRepository.OnDeletePersonCallback onDeletePersonCallback;
     private IPersonRepository.OnSavePersonCallback onSavePersonCallback;
     private IPersonRepository.OnGetAllPersonsCallback onGetAllPersonsCallback;
     private IPersonRepository.OnGetPersonByIdCallback onGetPersonByIdCallback;
-    private IPersonRepository.OnGetPersonsByDiscoIdCallback onGetPersonsByDiscoIdCallback;
+    private IPersonRepository.OnGetPersonsCallback onGetPersonsCallback;
     private IDiscoRepository.OnGetDiscoByIdCallback onGetDiscoByIdCallback;
 
     private IPersonRepository personRepository;
     private IDiscoRepository discoRepository;
 
-    public PersonPresenter(PeopleActivity view) {
+    public PersonPresenter(PersonsActivity view) {
         this.view = view;
         personRepository = new PersonRepository();
         discoRepository = new DiscoRepository();
@@ -63,13 +63,13 @@ public class PersonPresenter implements IPersonPresenter {
     }
 
     @Override
-    public void getPersonById(String id) {
-        personRepository.getPersonById(id, onGetPersonByIdCallback);
+    public void getAllPersonsByDiscoId(String id) {
+        personRepository.getAllPersonsByDiscoId(id, onGetPersonsCallback);
     }
 
     @Override
-    public void getPersonsByDiscoId(String id) {
-        personRepository.getPersonsByDiscoId(id, onGetPersonsByDiscoIdCallback);
+    public void getPersonById(String id) {
+        personRepository.getPersonById(id, onGetPersonByIdCallback);
     }
 
     @Override
@@ -123,6 +123,28 @@ public class PersonPresenter implements IPersonPresenter {
 
             }
         };
+        onGetPersonsCallback = new IPersonRepository.OnGetPersonsCallback() {
+            @Override
+            public void onSuccess(RealmList<Person> persons) {
+                view.showPersons(persons);
+            }
+
+            @Override
+            public void onError(String message) {
+                view.showMessage(message);
+            }
+        };
+        onGetDiscoByIdCallback = new IDiscoRepository.OnGetDiscoByIdCallback() {
+            @Override
+            public void onSuccess(Disco disco) {
+                view.updateToolbarTittle(disco.getName());
+            }
+
+            @Override
+            public void onError(String message) {
+                view.showMessage(message);
+            }
+        };
     }
 
     @Override
@@ -130,7 +152,6 @@ public class PersonPresenter implements IPersonPresenter {
         onDeletePersonCallback = null;
         onSavePersonCallback = null;
         onGetAllPersonsCallback = null;
-        onGetPersonsByDiscoIdCallback = null;
         onGetPersonByIdCallback = null;
     }
 }
