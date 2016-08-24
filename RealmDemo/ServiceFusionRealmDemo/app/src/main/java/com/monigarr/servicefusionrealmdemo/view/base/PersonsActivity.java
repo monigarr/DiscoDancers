@@ -103,7 +103,7 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
     private void showAddPersonDialog() {
         final AddPersonDialog dialog = new AddPersonDialog();
         //FragmentManager fm = getActivity().getFragmentManager();
-        dialog.show(getFragmentManager(), dialog.getClass().getName());
+        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
         dialog.setListener(new AddPersonDialog.OnAddPersonClickListener() {
             @Override
             public void onAddPersonClickListener(Person person) {

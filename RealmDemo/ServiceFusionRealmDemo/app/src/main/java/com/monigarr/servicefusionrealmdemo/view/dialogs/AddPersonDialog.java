@@ -1,7 +1,8 @@
 package com.monigarr.servicefusionrealmdemo.view.dialogs;
 
-import android.app.DialogFragment;
+
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
     }
 
     private void initComponents(View view) {
+        buttonAdd = (Button) view.findViewById(R.id.bt_add);
         etFirstName = (EditText) view.findViewById(R.id.et_firstname);
         etLastName = (EditText) view.findViewById(R.id.et_lastname);
         etDob = (EditText) view.findViewById(R.id.et_dob);
@@ -50,7 +52,7 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         buttonAdd.setOnClickListener(this);
-        etZipcode.setOnClickListener(this);
+        etDob.setOnClickListener(this);
     }
 
     @Override
