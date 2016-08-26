@@ -13,6 +13,7 @@ import com.monigarr.servicefusionrealmdemo.tools.DateFormat;
 
 import io.realm.RealmList;
 
+
 /**
  * Created by monigarr on 8/22/16.
  */
@@ -59,5 +60,8 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PersonVi
             tvZipcode = (TextView) itemView.findViewById(R.id.tvZipcode);
             tvDob = (TextView) itemView.findViewById(R.id.tvDob);
         }
+
+
     }
+
 }
