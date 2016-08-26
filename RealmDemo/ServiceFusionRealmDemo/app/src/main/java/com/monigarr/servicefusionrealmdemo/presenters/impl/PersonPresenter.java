@@ -137,7 +137,7 @@ public class PersonPresenter implements IPersonPresenter {
         onGetDiscoByIdCallback = new IDiscoRepository.OnGetDiscoByIdCallback() {
             @Override
             public void onSuccess(Disco disco) {
-                view.updateToolbarTittle(disco.getName());
+                view.updateToolbarTitle(disco.getName());
             }
 
             @Override

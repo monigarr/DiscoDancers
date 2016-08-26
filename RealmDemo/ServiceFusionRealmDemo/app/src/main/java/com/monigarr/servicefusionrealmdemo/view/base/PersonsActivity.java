@@ -14,12 +14,10 @@ import com.monigarr.servicefusionrealmdemo.model.Person;
 import com.monigarr.servicefusionrealmdemo.presenters.IPersonPresenter;
 import com.monigarr.servicefusionrealmdemo.presenters.impl.PersonPresenter;
 import com.monigarr.servicefusionrealmdemo.realm.table.RealmTable;
-import com.monigarr.servicefusionrealmdemo.view.adapters.PeopleAdapter;
+import com.monigarr.servicefusionrealmdemo.view.adapters.PersonsAdapter;
 import com.monigarr.servicefusionrealmdemo.view.dialogs.AddPersonDialog;
 
 import io.realm.RealmList;
-
-import static com.monigarr.servicefusionrealmdemo.R.string.people;
 
 /**
  * Created by monigarr on 8/22/16.
@@ -30,7 +28,7 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
     private IPersonPresenter presenter;
     private FloatingActionButton fbAdd;
     private RecyclerView rvPeople;
-    private PeopleAdapter adapter;
+    private PersonsAdapter adapter;
     private RealmList<Person> persons;
     private String discoId;
 
@@ -50,8 +48,8 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
         initRecyclerListener();
     }
 
-    public void updateToolbarTittle(String title) {
-        getSupportActionBar().setTitle(getString(people) + " - " + title);
+    public void updateToolbarTitle(String title) {
+        getSupportActionBar().setTitle("People" + " - " + title);
     }
 
     @Override
@@ -79,14 +77,13 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initRecyclerListener() {
-        rvPeople = (RecyclerView) findViewById(R.id.rv_people);
+        rvPeople = (RecyclerView) findViewById(R.id.rv_persons);
         rvPeople.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvPeople.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
@@ -102,7 +99,6 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
 
     private void showAddPersonDialog() {
         final AddPersonDialog dialog = new AddPersonDialog();
-        //FragmentManager fm = getActivity().getFragmentManager();
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
         dialog.setListener(new AddPersonDialog.OnAddPersonClickListener() {
             @Override
@@ -116,7 +112,7 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
 
     public void showPersons(RealmList<Person> persons) {
         this.persons = persons;
-        adapter = new PeopleAdapter(persons);
+        adapter = new PersonsAdapter(persons);
         rvPeople.setAdapter(adapter);
     }
 }

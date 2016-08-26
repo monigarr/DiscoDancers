@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ServiceFusionRealmDemo</string>
+    <string name="app_name">Realm Demo</string>
     <string name="action_settings">Settings</string>
 
     <string name="action_add_person">Add Person</string>
@@ -7,7 +7,7 @@
 
     <!-- disco -->
     <string name="add_disco">Add Disco</string>
-    <string name="input_name_of_disco">Disco\'s name</string>
+    <string name="input_name_of_disco">Disco name</string>
     <string name="name">name</string>
     <string name="pre_fill"></string>
 

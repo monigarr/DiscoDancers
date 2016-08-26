@@ -28,8 +28,8 @@ public class PersonRepository implements IPersonRepository {
         realmPerson.setId(UUID.randomUUID().toString());
         realmPerson.setName(person.getName());
         realmPerson.setLastName(person.getLastName());
-        realmPerson.setDob(person.getDob());
         realmPerson.setZipcode(person.getZipcode());
+        realmPerson.setDob(person.getDob());
         realm.commitTransaction();
 
         if (callback != null)
@@ -45,8 +45,8 @@ public class PersonRepository implements IPersonRepository {
         realmPerson.setId(UUID.randomUUID().toString());
         realmPerson.setName(person.getName());
         realmPerson.setLastName(person.getLastName());
-        realmPerson.setDob(person.getDob());
         realmPerson.setZipcode(person.getZipcode());
+        realmPerson.setDob(person.getDob());
 
         Disco disco = realm.where(Disco.class).equalTo(RealmTable.ID, discoId).findFirst();
         disco.getPersons().add(realmPerson);

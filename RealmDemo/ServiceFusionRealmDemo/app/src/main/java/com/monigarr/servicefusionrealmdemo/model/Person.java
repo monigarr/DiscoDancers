@@ -20,9 +20,10 @@ public class Person extends RealmObject {
     @Required
     private String lastName;
     @Required
-    private Date dob;
-    @Required
     private String zipcode;
+    @Required
+    private Date dob;
+
 
     public String getName() {
         return name;
@@ -40,20 +41,20 @@ public class Person extends RealmObject {
         this.lastName = lastName;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
     public String getZipcode() {
         return zipcode;
     }
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public String getId() {

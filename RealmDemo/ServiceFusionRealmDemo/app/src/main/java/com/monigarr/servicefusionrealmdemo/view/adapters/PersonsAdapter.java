@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.monigarr.servicefusionrealmdemo.R;
+import com.monigarr.servicefusionrealmdemo.app.RealmDemoApp;
 import com.monigarr.servicefusionrealmdemo.model.Person;
 import com.monigarr.servicefusionrealmdemo.tools.DateFormat;
 
@@ -16,11 +17,11 @@ import io.realm.RealmList;
  * Created by monigarr on 8/22/16.
  */
 
-public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonViewHolder> {
+public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PersonViewHolder> {
 
     private RealmList<Person> persons;
 
-    public PeopleAdapter(RealmList<Person> persons) {
+    public PersonsAdapter(RealmList<Person> persons) {
         this.persons = persons;
     }
 
@@ -35,7 +36,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonView
         holder.tvFirstname.setText(persons.get(position).getName());
         holder.tvLastname.setText(persons.get(position).getLastName());
         holder.tvZipcode.setText(persons.get(position).getZipcode());
-        String dob = "Dob :" + " " + DateFormat.convertDateToString(persons.get(position).getDob());
+        String dob = RealmDemoApp.getInstance().getString(R.string.dob) + " " + DateFormat.convertDateToString(persons.get(position).getDob());
         holder.tvDob.setText(dob);
     }
 
@@ -47,16 +48,16 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonView
     public class PersonViewHolder extends RecyclerView.ViewHolder {
         private TextView tvFirstname;
         private TextView tvLastname;
-        private TextView tvDob;
         private TextView tvZipcode;
+        private TextView tvDob;
 
         public PersonViewHolder(View itemView) {
             super(itemView);
-            tvFirstname = (TextView) itemView.findViewById(R.id.et_firstname);
-            tvLastname = (TextView) itemView.findViewById(R.id.et_lastname);
-            tvDob = (TextView) itemView.findViewById(R.id.et_dob);
-            tvZipcode = (TextView) itemView.findViewById(R.id.et_zipcode);
 
+            tvFirstname = (TextView) itemView.findViewById(R.id.tvFirstname);
+            tvLastname = (TextView) itemView.findViewById(R.id.tvLastname);
+            tvZipcode = (TextView) itemView.findViewById(R.id.tvZipcode);
+            tvDob = (TextView) itemView.findViewById(R.id.tvDob);
         }
     }
 }

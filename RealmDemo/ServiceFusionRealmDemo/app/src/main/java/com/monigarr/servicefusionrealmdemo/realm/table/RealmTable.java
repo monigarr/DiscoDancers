@@ -14,7 +14,7 @@ public interface RealmTable {
     }
 
     interface Person {
-        String NAME = "name";
+        String NAME = "firstname";
         String LASTNAME = "lastname";
         String DOB = "dob";
         String ZIPCODE = "zipcode";

@@ -26,7 +26,7 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
 
     private EditText etFirstName, etLastName, etDob, etZipcode;
     private Date date;
-    private Button buttonAdd;
+    private Button btAdd;
     private OnAddPersonClickListener listener;
 
     @Override
@@ -43,33 +43,33 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
     }
 
     private void initComponents(View view) {
-        buttonAdd = (Button) view.findViewById(R.id.bt_add);
-        etFirstName = (EditText) view.findViewById(R.id.et_firstname);
-        etLastName = (EditText) view.findViewById(R.id.et_lastname);
-        etDob = (EditText) view.findViewById(R.id.et_dob);
-        etZipcode = (EditText) view.findViewById(R.id.et_zipcode);
+        btAdd = (Button) view.findViewById(R.id.btAdd);
+        etFirstName = (EditText) view.findViewById(R.id.etFirstname);
+        etLastName = (EditText) view.findViewById(R.id.etLastname);
+        etDob = (EditText) view.findViewById(R.id.etDob);
+        etZipcode = (EditText) view.findViewById(R.id.etZipcode);
         etFirstName.requestFocus();
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
-        buttonAdd.setOnClickListener(this);
+        btAdd.setOnClickListener(this);
         etDob.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_add: {
+            case R.id.btAdd: {
                 if (isUserInfoValidate()) {
                     Person person = new Person();
                     person.setName(etFirstName.getText().toString());
                     person.setLastName(etLastName.getText().toString());
-                    person.setDob(date);
                     person.setZipcode(etZipcode.getText().toString());
+                    person.setDob(date);
                     listener.onAddPersonClickListener(person);
                 }
                 break;
             }
-            case R.id.et_dob: {
+            case R.id.etDob: {
                 Calendar now = Calendar.getInstance();
                 final DatePickerDialog dateDialog = DatePickerDialog.newInstance(
                         new DatePickerDialog.OnDateSetListener() {
@@ -95,8 +95,8 @@ public class AddPersonDialog extends DialogFragment implements View.OnClickListe
     private boolean isUserInfoValidate() {
         return !etFirstName.getText().toString().isEmpty() &&
                 !etLastName.getText().toString().isEmpty() &&
-                !etDob.getText().toString().isEmpty() &&
-                !etZipcode.getText().toString().isEmpty();
+                !etZipcode.getText().toString().isEmpty() &&
+                !etDob.getText().toString().isEmpty();
     }
 
     public void setListener(OnAddPersonClickListener listener) {

@@ -8,7 +8,7 @@ public interface IDiscoPresenter extends IBasePresenter {
 
     void addDisco(String discoName);
     void deleteDisco(int position);
-    void deleteDiscoById(String id);
+    void deleteDiscoById(String Id);
     void getDiscoById(String id);
     void getAllDiscos();
 }

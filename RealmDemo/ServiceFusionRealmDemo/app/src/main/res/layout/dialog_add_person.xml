@@ -10,13 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/et_lastname"
+        android:layout_alignRight="@+id/etLastname"
         android:text="@string/add_person"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:layout_marginTop="15dp"
-        android:id="@+id/et_firstname"
+        android:id="@+id/etFirstname"
         android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 
     <EditText
         android:layout_marginTop="15dp"
-        android:id="@+id/et_lastname"
+        android:id="@+id/etLastname"
         android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,12 +37,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/et_firstname"
+        android:layout_below="@+id/etFirstname"
         android:hint="@string/hint_lastname" />
 
     <EditText
         android:layout_marginTop="15dp"
-        android:id="@+id/et_zipcode"
+        android:id="@+id/etZipcode"
         android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,29 +50,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/et_lastname"
+        android:layout_below="@+id/etLastname"
         android:hint="@string/hint_zipcode" />
 
     <EditText
-        android:id="@+id/et_dob"
+        android:id="@+id/etDob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/et_zipcode"
+        android:layout_below="@+id/etZipcode"
         android:editable="false"
         android:focusable="false"
         android:hint="@string/hint_dob"
-        android:layout_alignRight="@+id/et_zipcode"
-        android:layout_alignEnd="@+id/et_zipcode"/>
+        android:layout_alignRight="@+id/etZipcode"
+        android:layout_alignEnd="@+id/etZipcode"/>
 
     <Button
-        android:id="@+id/bt_add"
+        android:id="@+id/btAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/et_dob"
+        android:layout_below="@+id/etDob"
         android:text="@string/add" />
 
 </RelativeLayout>
