@@ -31,7 +31,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PersonVi
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_person, parent, false);
         return new PersonViewHolder(view);
     }
-
+    
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
         holder.tvFirstname.setText(persons.get(position).getName());

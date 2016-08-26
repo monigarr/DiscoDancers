@@ -27,10 +27,14 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
 
     private IPersonPresenter presenter;
     private FloatingActionButton fbAdd;
+    //todo: add edit feature
+    // private CardView fbEdit;
     private RecyclerView rvPeople;
     private PersonsAdapter adapter;
     private RealmList<Person> persons;
     private String discoId;
+    //todo: add edit feature
+    // private OnAddEditPersonClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,13 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initComponents() {
         fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_person);
+        //todo: add edit feature
+        //fbEdit = (CardView) findViewById(R.id.cv);
+
         fbAdd.setOnClickListener(this);
+        //todo: add edit feature
+        //fbEdit.setOnClickListener(this);
+
         initRecyclerListener();
     }
 
@@ -73,6 +83,11 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
                 showAddPersonDialog();
                 break;
             }
+            //todo: add edit feature
+            /*case R.id.cv: {
+                showEditPersonDialog();
+                break;
+            }*/
         }
     }
 
@@ -110,9 +125,38 @@ public class PersonsActivity extends BaseActivity implements View.OnClickListene
         });
     }
 
+    /* todo add edit person feature
+    private void showEditPersonDialog() {
+        final EditPersonDialog dialog = new EditPersonDialog();
+        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+        dialog.setListener(new EditPersonDialog.OnEditPersonClickListener() {
+            @Override
+            public void onEditPersonClickListener(Person person) {
+                if (isUserInfoValidate()) {
+                    Person person = new Person();
+                    person.setName(etFirstName.getText().toString());
+                    person.setLastName(etLastName.getText().toString());
+                    person.setZipcode(etZipcode.getText().toString());
+                    person.setDob(date);
+                    listener.onAddPersonClickListener(person);
+                dialog.dismiss();
+                presenter.getPersonById(discoId);
+            }
+        });
+    }*/
+
     public void showPersons(RealmList<Person> persons) {
         this.persons = persons;
         adapter = new PersonsAdapter(persons);
         rvPeople.setAdapter(adapter);
     }
+
+    //todo: add this for edit person feature
+    /* public void setListener(OnAddEditPersonClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnAddEditPersonClickListener {
+        void onAddPersonClickListener(Person person);
+    }*/
 }
