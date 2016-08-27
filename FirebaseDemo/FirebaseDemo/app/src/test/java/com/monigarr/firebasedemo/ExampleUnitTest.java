@@ -1,4 +1,8 @@
-package com.monigarr.firebasedemo;
+/*
+ * Copyright (c) 2016.
+ */
+
+package com.monigarr.FirebaseDemo;
 
 import org.junit.Test;
 
