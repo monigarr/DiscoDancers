@@ -11,5 +11,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="fresh_config">Fresh Config</string>
     <string name="cause_crash">Cause Crash</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6091478452130469/3129870434</string>
 </resources>

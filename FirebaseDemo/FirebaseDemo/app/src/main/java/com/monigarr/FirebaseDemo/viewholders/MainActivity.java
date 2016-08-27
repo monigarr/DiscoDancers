@@ -55,7 +55,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         public TextView messageTextView;
         public TextView messengerTextView;
@@ -70,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     private static final String TAG = "MainActivity";
+    private static final String REQUIRED = "Required";
     public static final String MESSAGES_CHILD = "messages";
     private static final int REQUEST_INVITE = 1;
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Define default config values. Defaults are used when fetched config values are not
         // available. Eg: if an error occurred fetching values from the server.
         Map<String, Object> defaultConfigMap = new HashMap<>();
-        defaultConfigMap.put("friendly_msg_length", 10L);
+        defaultConfigMap.put("friendly_msg_length", 75L);
 
         // Apply config settings and default values.
         mFirebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings);
