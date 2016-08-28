@@ -11,6 +11,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by monicapeters on 8/27/16.
+ * Portfolio Demo showing proof of skills for:
+ * Quickly picking up a new technology (firebase)
+ * and building an android app with basice
+ * database crud features
  */
 
 public class BaseActivity extends AppCompatActivity {
