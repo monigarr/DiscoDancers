@@ -1,11 +1,31 @@
 # Disco and Dancers
 
-Write and deploy small native android application to store list of persons, containing the following fields: 
- * firstname,lastname,date of birth and zip-code. 
+Android demos showing ability to quickly pick up new frameworks and build android apps.
+
+My Portfolio of published mobile apps with details of my specific work, can be found online at http://www.LinkedIn.com/in/monigarr
+
+Resume and code reviews available upon request.
 
 # Firebase Android Demo #
-Create, Read, Update, Delete Person
-Read List of People
+
+Login
+Use your current Google account, the login is not stored in developers database. It uses Firebase's Google Authentication for login / logout
+
+Chat with friends
+Send invites to chat with friends
+
+Crash analytics
+Test a Crash for testing in the app.
+Use Firebase Console for crash details.
+
+Remote Configuration 
+Use Firebase Console to define chat text messages length
+
+Admob
+Use Firebase Console for details.
+Serves Top banner ad
+
+Standard firebase database > Create, Read, Update, Delete
 
 
 * Firebase Guide: https://firebase.google.com/docs/android/setup
