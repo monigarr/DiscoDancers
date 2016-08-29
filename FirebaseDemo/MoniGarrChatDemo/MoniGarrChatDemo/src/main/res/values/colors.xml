@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016.
+  -->
+
+<resources>
+    <color name="colorPrimary">#5A79A5</color>
+    <color name="colorPrimaryDark">#000063</color>
+    <color name="colorAccent">#CE0000</color>
+    <color name="colorTitle">#ffffff</color>
+    <color name="darkest">#000000</color>
+    <color name="darker">#000063</color>
+    <color name="dark">#CE0000</color>
+    <color name="medium">#5A79A5</color>
+    <color name="light">#9CAAC6</color>
+    <color name="lighter">#DEE7EF</color>
+    <color name="lightest">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+</resources>

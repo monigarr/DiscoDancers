@@ -8,6 +8,9 @@ Resume and code reviews available upon request.
 
 # Firebase Android Demo #
 
+Google Play Store Demo: 
+https://play.google.com/store/apps/details?id=com.monigarr.MoniGarrChatDemo 
+
 Login
 Use your current Google account, the login is not stored in developers database. It uses Firebase's Google Authentication for login / logout
 
