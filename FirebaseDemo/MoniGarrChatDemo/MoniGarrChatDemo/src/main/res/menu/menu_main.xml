@@ -21,9 +21,17 @@
         android:id="@+id/invite_menu"
         android:orderInCategory="102"
         android:title="@string/invite_menu_label" />
-        <item
+
+    <item
         android:id="@+id/crash_menu"
-    android:orderInCategory="103"
-    android:title="@string/cause_crash"
-    app:showAsAction="never" />
+        android:orderInCategory="103"
+        android:title="@string/cause_crash"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/add_friend"
+        android:orderInCategory="104"
+        android:title="Add Person"
+        app:showAsAction="never" />
+
 </menu>

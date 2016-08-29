@@ -16,11 +16,12 @@ import java.util.Map;
  */
 @IgnoreExtraProperties
 public class Friend {
-    public String uid;
-    public String firstname;
-    public String lastname;
-    public Date dob;
-    public String zipcode;
+
+    private String uid;
+    private String firstname;
+    private String lastname;
+    private Date dob;
+    private String zipcode;
 
     public Friend() {
         // Default constructor required for calls to DataSnapshot.getValue(Friend.class)
@@ -45,4 +46,45 @@ public class Friend {
 
         return result;
     }
+
+    public String getId() {
+        return uid;
+    }
+
+    public void setId(String id) {
+        this.uid = id;
+    }
+
+    public String getFirstname(String firstname) {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname(String lastname) {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getZipcode(String zipcode) {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Date getDob(Date dob) {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
 }

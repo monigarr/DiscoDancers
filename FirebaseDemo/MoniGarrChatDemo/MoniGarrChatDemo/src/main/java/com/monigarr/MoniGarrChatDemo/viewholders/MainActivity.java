@@ -283,15 +283,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.fresh_config_menu:
                 fetchConfig();
                 return true;
+            case R.id.add_friend:
+                startActivity(new Intent(this, AddFriendActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    //Crash on Purpose
     private void causeCrash() {
         throw new NullPointerException("Fake null pointer exception");
     }
 
+    //Send Chat Invites
     private void sendInvitation() {
         Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                 .setMessage(getString(R.string.invitation_message))
@@ -300,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivityForResult(intent, REQUEST_INVITE);
     }
 
-    // Fetch the config to determine the allowed length of messages.
+    // Remote Config defines allowed length of messages.
     public void fetchConfig() {
         long cacheExpiration = 3600; // 1 hour in seconds
         // If developer mode is enabled reduce cacheExpiration to 0 so that each fetch goes to the
@@ -334,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         if (requestCode == REQUEST_INVITE) {
             if (resultCode == RESULT_OK) {
-                // Use Firebase Measurement to log that invitation was sent.
+                // Use Firebase Measurement to log invitation was sent.
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "inv_sent");
 
@@ -342,7 +347,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
                 Log.d(TAG, "Invitations sent: " + ids.length);
             } else {
-                // Use Firebase Measurement to log that invitation was not sent
+                // Use Firebase Measurement to log invitation was not sent
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "inv_not_sent");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE, payload);
@@ -354,14 +359,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     /**
-     * Apply retrieved length limit to edit text field. This result may be fresh from the server or it may be from
-     * cached values.
+     * Get Remote Config message length limit to edit text field.
+     * This result may be fresh from the server or from cached values.
      */
     private void applyRetrievedLengthLimit() {
         Long friendly_msg_length = mFirebaseRemoteConfig.getLong("friendly_msg_length");
         mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
         Log.d(TAG, "FML is: " + friendly_msg_length);
     }
+
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
