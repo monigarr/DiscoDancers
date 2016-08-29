@@ -22,7 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.monigarr.MoniGarrChatDemo.R;
 import com.monigarr.MoniGarrChatDemo.models.Friend;
+import com.monigarr.MoniGarrChatDemo.services.DateFormat;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by monicapeters on 8/29/16.
@@ -80,7 +84,7 @@ public class AddFriendActivity extends AppCompatActivity implements View.OnClick
                     String firstname = etFirstname.getText().toString().trim();
                     String lastname = etLastname.getText().toString().trim();
                     String zipcode = etZipcode.getText().toString().trim();
-                    //Date dob = etDob.getText().toString();
+                    Date dob = etDob.getDob().toString().trim();
 
                     //create Friend object
                     Friend friend = new Friend();
@@ -89,7 +93,7 @@ public class AddFriendActivity extends AppCompatActivity implements View.OnClick
                     friend.setFirstname(firstname);
                     friend.setLastname(lastname);
                     friend.setZipcode(zipcode);
-                    friend.setDob(date);
+                    friend.setDob(dob);
                     listener.onAddFriendClickListener(friend);
 
                     //store friend values to firebase
@@ -124,44 +128,44 @@ public class AddFriendActivity extends AppCompatActivity implements View.OnClick
                         }
                     });
                 }
+                break;
             }
-            break;
+            case R.id.etDob: {
+                Calendar now = Calendar.getInstance();
+                final DatePickerDialog dateDialog = DatePickerDialog.newInstance(
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog datePickerDialog, int year, int monthOfYear, int dayOfMonth) {
+                                Calendar checkedCalendar = Calendar.getInstance();
+                                checkedCalendar.set(year, monthOfYear, dayOfMonth);
+                                date = checkedCalendar.getTime();
+                                etDob.setText(DateFormat.convertDateToString(date));
+                            }
+                        },
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dateDialog.setMaxDate(now);
+                dateDialog.show((getActivity()).getFragmentManager(), this.getClass().getName());
+                break;
+            }
         }
-        case R.id.etDob: {
-            Calendar now = Calendar.getInstance();
-            final DatePickerDialog dateDialog = DatePickerDialog.newInstance(
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePickerDialog datePickerDialog, int year, int monthOfYear, int dayOfMonth) {
-                            Calendar checkedCalendar = Calendar.getInstance();
-                            checkedCalendar.set(year, monthOfYear, dayOfMonth);
-                            date = checkedCalendar.getTime();
-                            etDob.setText(DateFormat.convertDateToString(date));
-                        }
-                    },
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
-            dateDialog.setMaxDate(now);
-            dateDialog.show((getActivity()).getFragmentManager(), this.getClass().getName());
-            break;
-
     }
 
-        private boolean isUserInfoValidate() {
-            return !etFirstname.getText().toString().isEmpty() &&
-                    !etLastname.getText().toString().isEmpty() &&
-                    !etZipcode.getText().toString().isEmpty() &&
-                    !etDob.getText().toString().isEmpty();
-        }
+    private boolean isUserInfoValidate() {
+        return !etFirstname.getText().toString().isEmpty() &&
+                !etLastname.getText().toString().isEmpty() &&
+                !etZipcode.getText().toString().isEmpty() &&
+                !etDob.getText().toString().isEmpty();
+    }
 
-        public void setListener(OnAddFriendClickListener listener) {
-            this.listener = listener;
-        }
+    public void setListener(OnAddFriendClickListener listener) {
+        this.listener = listener;
+    }
 
-        public interface OnAddFriendClickListener {
-            void onAddFriendClickListener(Friend friend);
-        }
+    public interface OnAddFriendClickListener {
+        void onAddFriendClickListener(Friend friend);
+    }
 
 }

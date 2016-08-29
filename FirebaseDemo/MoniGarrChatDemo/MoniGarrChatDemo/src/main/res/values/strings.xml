@@ -3,19 +3,22 @@
     <string name="welcome_msg">Welcome!</string>
     <string name="sign_out">Sign Out</string>
     <string name="contacts_permission_rationale">Signin needs access to account info.</string>
-    <string name="invite_menu_label">Invite</string>
-    <string name="invitation_message">Join my MoniGarr Chat Demo</string>
-    <string name="invitation_cta">Call to action</string>
+    <string name="invite_menu_label">Invite Friend</string>
+    <string name="invitation_message">Join MoniGarr Chat Demo</string>
+    <string name="invitation_cta">Invite Friend</string>
     <string name="invitation_title">MoniGarr Chat Demo Invite</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="fresh_config">Fresh Config</string>
     <string name="cause_crash">Cause Crash On Purpose!</string>
     <string name="add_friend">Add Friend</string>
+    <string name="view_friends">View Friends</string>
+    <string name="edit_friend">Edit Friend</string>
+    <string name="delete_friend">Delete Friend</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="hint_firstname">First Name</string>
-    <string name="hint_lastname">Last Name</string>
+    <string name="hint_firstname">Firstname</string>
+    <string name="hint_lastname">Lastname</string>
     <string name="hint_dob">01/01/1990</string>
     <string name="hint_zipcode">90210</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6091478452130469/3129870434</string>
