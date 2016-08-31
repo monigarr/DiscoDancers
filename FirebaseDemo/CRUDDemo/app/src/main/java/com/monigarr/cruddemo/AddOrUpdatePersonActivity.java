@@ -16,18 +16,22 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+//pretty calendar
+
 /**
  * Created by monicapeters on 8/31/16.
  */
 
 
-public class AddOrUpdatePersonActivity extends AppCompatActivity {
+public class AddOrUpdatePersonActivity extends AppCompatActivity  {
 
     Button bOK,bCancel;
     Person person;
     int position;
     EditText pFirstname,pLastname,pZipcode,pDob;
     CoordinatorLayout cl;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +63,7 @@ public class AddOrUpdatePersonActivity extends AppCompatActivity {
         bOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pFirstname.getText().toString().trim().equals("") ||
-                        pLastname.getText().toString().trim().equals("") ||
-                        pZipcode.getText().toString().trim().equals("") ||
-                        pDob.getText().toString().trim().equals("")) {
+                if (pFirstname.getText().toString().trim().equals("") || pLastname.getText().toString().trim().equals("") || pZipcode.getText().toString().trim().equals("") || pDob.getText().toString().trim().equals("")) {
                     final Snackbar snackBar = Snackbar.make(cl, "Enter all Data.", Snackbar.LENGTH_LONG);
                     snackBar.setAction("CLOSE", new View.OnClickListener() {
                         @Override

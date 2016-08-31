@@ -42,10 +42,10 @@ public class PersonDetailsActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         Person personDetailsModel = dataSnapshot.getValue(Person.class);
-                        Firstname.setText(getString(R.string.person_firstname,personDetailsModel.getFirstname()));
-                        Lastname.setText(getString(R.string.person_lastname,personDetailsModel.getLastname()));
-                        Zipcode.setText(getString(R.string.person_zipcode,personDetailsModel.getZipcode()));
-                        Dob.setText(getString(R.string.person_dob, String.valueOf(personDetailsModel.getDob())));
+                        Firstname.setText(getString(R.string.firstname,personDetailsModel.getFirstname()));
+                        Lastname.setText(getString(R.string.lastname,personDetailsModel.getLastname()));
+                        Zipcode.setText(getString(R.string.zipcode,personDetailsModel.getZipcode()));
+                        Dob.setText(getString(R.string.dob, String.valueOf(personDetailsModel.getDob())));
                     }
 
                     @Override

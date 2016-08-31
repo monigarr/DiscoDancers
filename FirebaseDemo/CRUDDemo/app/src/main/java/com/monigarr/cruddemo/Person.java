@@ -16,6 +16,7 @@ public class Person {
     private String firstname;
     private String lastname;
     private String zipcode;
+    //todo: change to Date with Pretty Calendar
     private int dob;
 
     public Person(){

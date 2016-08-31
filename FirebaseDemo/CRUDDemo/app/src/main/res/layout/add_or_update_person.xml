@@ -20,21 +20,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textCapSentences"
+                android:inputType="textPersonName"
                 android:hint="@string/person_firstname_hint" />
             <EditText
                 android:id="@+id/pLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textCapSentences"
+                android:inputType="textPersonName"
                 android:hint="@string/person_lastname_hint" />
             <EditText
                 android:id="@+id/pZipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textCapSentences"
+                android:inputType="textPostalAddress"
                 android:hint="@string/person_zipcode_hint" />
             <EditText
                 android:id="@+id/pDob"
