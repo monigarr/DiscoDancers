@@ -33,10 +33,11 @@ Standard firebase database > Create, Read, Update, Delete
 
 * Material DateTime Picker: https://github.com/wdullaer/MaterialDateTimePicker
 * CircleImageView: https://github.com/hdodenhof/CircleImageView 
+* Bumptech Glide: https://github.com/ersin-ertan/GlideExamples 
 * Firebase Guide: https://firebase.google.com/docs/android/setup
 
  
-# Realm Android Database #
+# Realm Android Demo #
 
 Add Items with floating tab bar
 Delete Items with Swipe
@@ -52,7 +53,6 @@ Tap Disco Name > View All People in the Disco
 
 
 
-We’re looking for basic CRUD functionality. Any bells and whistles are welcome. The app should store the data on firebase (or similar). 
 
 Provide the APK, source code and access to the firebase instance along with your application.
 
