@@ -4,21 +4,18 @@
 
 package com.monigarr.MoniGarrChatDemo.models;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by monicapeters on 8/27/16.
  */
-@IgnoreExtraProperties
+
 public class Friend {
 
     private String firstname;
     private String lastname;
-    private Date dob;
+    private String dob;
     private String zipcode;
 
     public Friend() {
@@ -50,11 +47,11 @@ public class Friend {
         this.zipcode = zipcode;
     }
 
-    public Date getDob(Date dob) {
+    public String getDob(String dob) {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -65,9 +62,7 @@ public class Friend {
         result.put("lastname", lastname);
         result.put("zipcode", zipcode);
         result.put("dob", dob);
-
         return result;
     }
-
 
 }

@@ -11,25 +11,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <TextView
-        android:id="@+id/tvFriendDetailFirstname"
+        android:id="@+id/Firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         tools:text="Firstname" />
     <TextView
-        android:id="@+id/tvFriendDetailLastname"
+        android:id="@+id/Lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         tools:text="Lastname" />
     <TextView
-        android:id="@+id/tvFriendDetailZipcode"
+        android:id="@+id/Zipcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         tools:text="Zip" />
     <TextView
-        android:id="@+id/tvFriendDetailDob"
+        android:id="@+id/Dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"

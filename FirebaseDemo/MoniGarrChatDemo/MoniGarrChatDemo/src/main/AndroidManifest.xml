@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".viewholders.MainActivity">
+            android:name=".viewholders.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,8 +30,6 @@
         </activity>
 
         <activity android:name=".viewholders.SigninActivity" />
-        <activity android:name=".viewholders.AddFriendActivity" />
-        <activity android:name=".viewholders.FriendsActivity" />
 
         <service
             android:name=".services.DemoFirebaseMessagingService"
@@ -47,6 +47,25 @@
                     android:name="com.monigarr.MoniGarrChatDemo.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".viewholders.AddFriendActivity" />
+
+        <activity
+            android:name=".viewholders.FriendDetailsActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.monigarr.MoniGarrChatDemo.viewholders.AddFriendActivity" />
+        </activity>
+        <activity
+            android:name=".viewholders.UpdateFriendActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.monigarr.MoniGarrChatDemo.viewholders.AddFriendActivity" />
+        </activity>
 
     </application>
 

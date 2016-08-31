@@ -16,28 +16,28 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
             <EditText
-                android:id="@+id/friendFirstname"
+                android:id="@+id/Firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="textCapSentences"
                 android:hint="@string/hint_firstname" />
             <EditText
-                android:id="@+id/friendLastname"
+                android:id="@+id/Lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="textEmailAddress"
                 android:hint="@string/hint_lastname" />
             <EditText
-                android:id="@+id/friendZip"
+                android:id="@+id/Zipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="phone"
                 android:hint="@string/hint_zipcode" />
             <EditText
-                android:id="@+id/friendDob"
+                android:id="@+id/Dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

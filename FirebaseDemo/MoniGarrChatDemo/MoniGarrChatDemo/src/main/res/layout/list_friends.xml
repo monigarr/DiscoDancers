@@ -17,7 +17,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/FirstName"
+                    android:id="@+id/Firstname"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -26,7 +26,7 @@
                     android:padding="16dp"
                     android:text="First" />
                 <TextView
-                    android:id="@+id/LastName"
+                    android:id="@+id/Lastname"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -59,7 +59,7 @@
                 android:orientation="horizontal"
                 android:gravity="end">
                 <ImageView
-                    android:id="@+id/EditPerson"
+                    android:id="@+id/EditFriend"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
@@ -67,7 +67,7 @@
                     android:contentDescription="Edit"
                     android:src="@drawable/ic_edit_friend" />
                 <ImageView
-                    android:id="@+id/DeletePerson"
+                    android:id="@+id/DeleteFriend"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"

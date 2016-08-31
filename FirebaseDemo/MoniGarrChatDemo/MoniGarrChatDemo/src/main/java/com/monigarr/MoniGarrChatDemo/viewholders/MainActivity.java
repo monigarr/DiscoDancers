@@ -39,7 +39,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -47,6 +46,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.monigarr.MoniGarrChatDemo.R;
 import com.monigarr.MoniGarrChatDemo.models.FriendMessage;
 import com.monigarr.MoniGarrChatDemo.preferences.AppPreferences;
+import com.monigarr.MoniGarrChatDemo.services.CauseCrash;
+import com.monigarr.MoniGarrChatDemo.services.SignOut;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,10 +72,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private static final String TAG = "MainActivity";
     private static final String REQUIRED = "Required";
     public static final String MESSAGES_CHILD = "messages";
-    private static final int REQUEST_INVITE = 1;
-    public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
     public static final String ANONYMOUS = "anonymous";
     private static final String MESSAGE_SENT_EVENT = "message_sent";
+    private static final int REQUEST_INVITE = 1;
+    public int DEFAULT_MSG_LENGTH_LIMIT = 10;
+
     private String mUsername;
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
@@ -88,10 +90,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     //firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private FirebaseAnalytics mFirebaseAnalytics;
     private EditText mMessageEditText;
     private AdView mAdView;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -266,21 +268,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.invite_menu:
+                //todo: refactor
                 sendInvitation();
                 return true;
             case R.id.crash_menu:
-                FirebaseCrash.logcat(Log.ERROR, TAG, "crash caused");
-                causeCrash();
+                CauseCrash crash = new CauseCrash();
+                crash.crashTestMe();
                 return true;
             case R.id.sign_out_menu:
-                mFirebaseAuth.signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                mFirebaseUser = null;
-                mUsername = ANONYMOUS;
-                mPhotoUrl = null;
+                SignOut gsignout = new SignOut();
+                gsignout.signMeOut();
                 startActivity(new Intent(this, SigninActivity.class));
                 return true;
             case R.id.fresh_config_menu:
+                //todo refactor
                 fetchConfig();
                 return true;
             case R.id.add_friend:
@@ -291,12 +292,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     }
 
-    //Crash on Purpose
-    private void causeCrash() {
-        throw new NullPointerException("Fake null pointer exception");
-    }
-
     //Send Chat Invites
+    //todo: Refactor into its own reusable class
     private void sendInvitation() {
         Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                 .setMessage(getString(R.string.invitation_message))
@@ -305,7 +302,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivityForResult(intent, REQUEST_INVITE);
     }
 
+
     // Remote Config defines allowed length of messages.
+    //todo: Refactor into its own reusable class
     public void fetchConfig() {
         long cacheExpiration = 3600; // 1 hour in seconds
         // If developer mode is enabled reduce cacheExpiration to 0 so that each fetch goes to the
@@ -332,6 +331,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 });
     }
 
+    /**
+     * Get Remote Config message length limit to edit text field.
+     * This result may be fresh from the server or from cached values.
+     * Todo: refactor into its own class
+     */
+    private void applyRetrievedLengthLimit() {
+        Long friendly_msg_length = mFirebaseRemoteConfig.getLong("friendly_msg_length");
+        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
+        Log.d(TAG, "FML is: " + friendly_msg_length);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -356,16 +366,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.d(TAG, "Failed to send invitation.");
             }
         }
-    }
-
-    /**
-     * Get Remote Config message length limit to edit text field.
-     * This result may be fresh from the server or from cached values.
-     */
-    private void applyRetrievedLengthLimit() {
-        Long friendly_msg_length = mFirebaseRemoteConfig.getLong("friendly_msg_length");
-        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
-        Log.d(TAG, "FML is: " + friendly_msg_length);
     }
 
 

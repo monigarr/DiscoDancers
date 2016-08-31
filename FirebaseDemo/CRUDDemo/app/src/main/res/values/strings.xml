@@ -1,0 +1,20 @@
+<!--
+  ~ Copyright (c) 2016.
+  -->
+
+<resources>
+    <string name="app_name">CRUD Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="activity_name">Firebase Database</string>
+    <string name="title_activity_person_details">Details</string>
+    <string name="person_firstname_hint">Firstname</string>
+    <string name="person_lastname_hint">Lastname</string>
+    <string name="person_zipcode_hint">Zipcode</string>
+    <string name="person_dob_hint">Dob</string>
+    <string name="person_id">ID : %1$s</string>
+    <string name="person_firstname">Firstname : %1$s</string>
+    <string name="person_lastname">Lastname : %1$s</string>
+    <string name="person_zipcode">Zipcode : %1$s</string>
+    <string name="person_dob">Dob : %1$s</string>
+
+</resources>
