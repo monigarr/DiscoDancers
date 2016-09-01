@@ -45,7 +45,7 @@ public class PersonDetailsActivity extends AppCompatActivity {
                         Firstname.setText(getString(R.string.firstname,personDetailsModel.getFirstname()));
                         Lastname.setText(getString(R.string.lastname,personDetailsModel.getLastname()));
                         Zipcode.setText(getString(R.string.zipcode,personDetailsModel.getZipcode()));
-                        Dob.setText(getString(R.string.dob, String.valueOf(personDetailsModel.getDob())));
+                        Dob.setText(getString(R.string.dob, personDetailsModel.getDob()));
                     }
 
                     @Override

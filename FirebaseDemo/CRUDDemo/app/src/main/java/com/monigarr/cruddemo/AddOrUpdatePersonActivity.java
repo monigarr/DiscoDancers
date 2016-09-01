@@ -78,7 +78,7 @@ public class AddOrUpdatePersonActivity extends AppCompatActivity  {
                     p.setFirstname(pFirstname.getText().toString());
                     p.setLastname(pLastname.getText().toString());
                     p.setZipcode(pZipcode.getText().toString());
-                    p.setDob(Integer.parseInt(pDob.getText().toString()));
+                    p.setDob(pDob.getText().toString());
                     if (person == null)
                         MainActivity.getInstance().addPerson(p);
                     else
@@ -108,7 +108,7 @@ public class AddOrUpdatePersonActivity extends AppCompatActivity  {
                         pFirstname.setText(person.getFirstname());
                         pLastname.setText(person.getLastname());
                         pZipcode.setText(person.getZipcode());
-                        pDob.setText(String.valueOf(person.getDob()));
+                        pDob.setText(person.getDob());
                     }
 
                     @Override

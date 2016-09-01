@@ -10,7 +10,7 @@
     <string name="person_firstname_hint">Firstname</string>
     <string name="person_lastname_hint">Lastname</string>
     <string name="person_zipcode_hint">Zipcode</string>
-    <string name="person_dob_hint">1990</string>
+    <string name="person_dob_hint">Birth Year</string>
     <string name="person_id">ID : %1$s</string>
     <string name="firstname">Firstname : %1$s</string>
     <string name="lastname">Lastname : %1$s</string>

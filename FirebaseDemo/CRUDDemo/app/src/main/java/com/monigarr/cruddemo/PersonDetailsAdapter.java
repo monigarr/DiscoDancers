@@ -55,6 +55,7 @@ public class PersonDetailsAdapter extends BaseAdapter {
             holder = new Holder();
             holder.Firstname = (TextView) v.findViewById(R.id.Firstname);
             holder.Lastname = (TextView) v.findViewById(R.id.Lastname);
+            holder.Dob = (TextView) v.findViewById(R.id.Dob);
             holder.EditPerson = (ImageView) v.findViewById(R.id.EditPerson);
             holder.DeletePerson = (ImageView) v.findViewById(R.id.DeletePerson);
             v.setTag(holder);
@@ -63,7 +64,8 @@ public class PersonDetailsAdapter extends BaseAdapter {
         }
 
         holder.Firstname.setText(arrayListPerson.get(position).getFirstname());
-        holder.Lastname.setText(String.valueOf(arrayListPerson.get(position).getLastname()));
+        holder.Lastname.setText(arrayListPerson.get(position).getLastname());
+        //holder.Dob.setText(arrayListPerson.get(position).getDob());
         holder.EditPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +84,7 @@ public class PersonDetailsAdapter extends BaseAdapter {
     }
 
     class Holder {
-        TextView Firstname,Lastname;
+        TextView Firstname,Lastname,Dob;
         ImageView DeletePerson,EditPerson;
     }
 

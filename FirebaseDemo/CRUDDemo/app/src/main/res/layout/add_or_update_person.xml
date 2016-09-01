@@ -20,21 +20,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:hint="@string/person_firstname_hint" />
             <EditText
                 android:id="@+id/pLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:hint="@string/person_lastname_hint" />
             <EditText
                 android:id="@+id/pZipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="textPostalAddress"
+                android:inputType="text"
                 android:hint="@string/person_zipcode_hint" />
             <EditText
                 android:id="@+id/pDob"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/person_dob_hint"
-                android:inputType="number" />
+                android:inputType="text" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

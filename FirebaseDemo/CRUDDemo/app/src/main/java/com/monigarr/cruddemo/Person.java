@@ -17,13 +17,13 @@ public class Person {
     private String lastname;
     private String zipcode;
     //todo: change to Date with Pretty Calendar
-    private int dob;
+    private String dob;
 
     public Person(){
         /*Blank default constructor essential for Firebase*/
     }
 
-    public void setFirstname(String name) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
     public String getFirstname() {
@@ -44,10 +44,10 @@ public class Person {
         return zipcode;
     }
 
-    public void setDob(int dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
-    public int getDob() {
+    public String getDob() {
         return dob;
     }
 

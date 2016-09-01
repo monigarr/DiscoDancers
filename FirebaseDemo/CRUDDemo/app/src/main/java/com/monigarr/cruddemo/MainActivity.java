@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("persons");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Persons");
         mDatabase.addChildEventListener(childEventListener);
         mDatabase.keepSynced(true);
         mainActivity = this;
