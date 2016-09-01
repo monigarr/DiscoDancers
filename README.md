@@ -2,9 +2,19 @@
 
 Android demos showing ability to quickly pick up new frameworks and build android apps.
 
-My Portfolio of published mobile apps with details of my specific work, can be found online at http://www.LinkedIn.com/in/monigarr
+Portfolio, Resume http://www.LinkedIn.com/in/monigarr
 
-Resume and code reviews available upon request.
+These projects built with:
+- Android Studio 2.2 Beta 3
+- OS X
+- Sublime Text Edit
+- Git and Github
+- Firebase
+- Realm
+- Material DateTimePicker
+- CircleImageView
+- Pumptech Glide
+- Firebase
 
 # Firebase CRUD Demo for Android #
 - [Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/CRUDDemo)
@@ -23,20 +33,20 @@ Resume and code reviews available upon request.
 - Standard firebase database > Create, Read, Update, Delete
 
 
-## Login ##
+## Login
 Use your current Google account, the login is not stored in developers database. It uses Firebase's Google Authentication for login / logout
 
-## Chat with friends ## 
+## Chat with friends
 Send invites to chat with friends
 
-## Crash analytics ## 
+## Crash analytics
 Test a Crash for testing in the app.
 Use Firebase Console for crash details.
 
-## Remote Configuration  ## 
+## Remote Configuration 
 Use Firebase Console to define chat text messages length
 
-## Admob ## 
+## Admob
 Use Firebase Console for details.
 Serves Top banner ad
 
@@ -52,7 +62,7 @@ Serves Top banner ad
 - Add Items with floating tab bar
 - Delete Items with Swipe
 
-## Create Disco Name ## 
+## Create Disco Name
 Tap Disco Name > Add New Person firstname, lastname, dob, zipcode (tap disco, add person)
 Tap Disco Name > View All People in the Disco
 
