@@ -127,11 +127,15 @@ public class MainActivity extends AppCompatActivity {
         person.setZipcode(model.getZipcode());
         person.setDob(model.getDob());
 
+        //append data to the list with unique ID (auto generated)
+        //each time Persons child is added
+        //Avoids write conflicts when many clients simultaneously adding data
         String key = mDatabase.child("Persons").push().getKey();
         Map<String, Object> postValues = person.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(key, postValues);
+        //add person object
         mDatabase.updateChildren(childUpdates);
     }
 
@@ -151,7 +155,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ChildEventListener childEventListener = new ChildEventListener() {
+
         @Override
+        //get list or listen for additions
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             lvPerson.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
@@ -161,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
             keysArray.add(dataSnapshot.getKey());
             updateView();
         }
+
         @Override
+        //listen for changes
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
             String changedKey = dataSnapshot.getKey();
             int changedIndex = keysArray.indexOf(changedKey);
@@ -169,7 +177,9 @@ public class MainActivity extends AppCompatActivity {
             arrayListPerson.set(changedIndex,person);
             updateView();
         }
+
         @Override
+        //listen for removals
         public void onChildRemoved(DataSnapshot dataSnapshot) {
             String deletedKey = dataSnapshot.getKey();
             int removedIndex = keysArray.indexOf(deletedKey);
@@ -177,8 +187,11 @@ public class MainActivity extends AppCompatActivity {
             arrayListPerson.remove(removedIndex);
             updateView();
         }
+
         @Override
+        //listen for order changes
         public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+
         @Override
         public void onCancelled(DatabaseError databaseError) {
             Toast.makeText(getApplicationContext(),"Could not update.",Toast.LENGTH_SHORT).show();

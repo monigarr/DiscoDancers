@@ -5,6 +5,8 @@
 package com.monigarr.cruddemo;
 
 /**
+ * Maintain a single Person Object
+ * with all Getter & Setter Methods
  * Created by monicapeters on 8/31/16.
  */
 
