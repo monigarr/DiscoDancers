@@ -11,7 +11,8 @@ Resume and code reviews available upon request.
 - [Android APK](https://github.com/monigarr/DiscoDancers/blob/master/FirebaseDemo/CRUDDemo/app-debug.apk)
 
 ##Firebase Database##
-- Person: create, read, edit, delete
+- Persons: person: firstname, lastname, zipcode, dob
+- create, read, edit, delete
 
 
 # Firebase ChatRoom Demo for Android #
