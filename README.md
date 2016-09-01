@@ -7,17 +7,17 @@ My Portfolio of published mobile apps with details of my specific work, can be f
 Resume and code reviews available upon request.
 
 # Firebase CRUD Demo for Android #
--[Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/CRUDDemo)
--[Android APK](https://github.com/monigarr/DiscoDancers/blob/master/FirebaseDemo/CRUDDemo/app-debug.apk)
+- [Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/CRUDDemo)
+- [Android APK](https://github.com/monigarr/DiscoDancers/blob/master/FirebaseDemo/CRUDDemo/app-debug.apk)
 
 ##Firebase Database##
--Person: create, read, edit, delete
+- Person: create, read, edit, delete
 
 
 # Firebase ChatRoom Demo for Android #
 
--[Google Play](https://play.google.com/store/apps/details?id=com.monigarr.MoniGarrChatDemo)
--[Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/MoniGarrChatDemo) 
+- [Google Play](https://play.google.com/store/apps/details?id=com.monigarr.MoniGarrChatDemo)
+- [Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/MoniGarrChatDemo) 
 
 - Standard firebase database > Create, Read, Update, Delete
 
