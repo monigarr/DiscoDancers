@@ -48,8 +48,8 @@ Serves Top banner ad
  
 # Realm Android Demo #
 
-## Add Items with floating tab bar ## 
-Delete Items with Swipe
+- Add Items with floating tab bar
+- Delete Items with Swipe
 
 ## Create Disco Name ## 
 Tap Disco Name > Add New Person firstname, lastname, dob, zipcode (tap disco, add person)
@@ -61,12 +61,12 @@ Tap Disco Name > View All People in the Disco
 - Realm Limitations: https://realm.io/docs/java/latest/#current-limitations
 
 
-## Design Support Libraries ## 
+## Design Support Libraries 
 https://guides.codepath.com/android/Design-Support-Library
 
-## Realm Details ## 
+## Realm Details
 https://realm.io/docs/java/latest/
 
-## Realm Browser for Mac ## 
+## Realm Browser for Mac
 https://itunes.apple.com/app/realm-browser/id1007457278
 
