@@ -284,9 +284,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 //todo refactor
                 fetchConfig();
                 return true;
-            case R.id.add_friend:
-                startActivity(new Intent(this, AddFriendActivity.class));
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

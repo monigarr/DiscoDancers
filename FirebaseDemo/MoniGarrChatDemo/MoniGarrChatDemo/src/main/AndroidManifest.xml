@@ -48,25 +48,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".viewholders.AddFriendActivity" />
-
-        <activity
-            android:name=".viewholders.FriendDetailsActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.monigarr.MoniGarrChatDemo.viewholders.AddFriendActivity" />
-        </activity>
-        <activity
-            android:name=".viewholders.UpdateFriendActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.monigarr.MoniGarrChatDemo.viewholders.AddFriendActivity" />
-        </activity>
-
     </application>
 
 </manifest>
