@@ -15,6 +15,9 @@ These projects built with:
 - CircleImageView
 - Pumptech Glide
 - Firebase
+- RXJava for Android Reactive Programming
+- RXAndroid
+- Retrofit
 
 # Firebase CRUD Demo for Android #
 - [Android Studio Project](https://github.com/monigarr/DiscoDancers/tree/master/FirebaseDemo/CRUDDemo)
@@ -71,12 +74,29 @@ Tap Disco Name > View All People in the Disco
 - Realm Java: https://realm.io/docs/java/latest/
 - Realm Limitations: https://realm.io/docs/java/latest/#current-limitations
 
+# RXJava Demo #
+Get all Github Starred Repositories
+
+
+
 
 ## Design Support Libraries 
 https://guides.codepath.com/android/Design-Support-Library
 
 ## Realm Details
 https://realm.io/docs/java/latest/
+
+# GitHub API
+https://developer.github.com/v3/search/#search-repositories 
+
+## RXJava
+https://github.com/ReactiveX/RxJava
+
+## RxAndroid
+https://github.com/ReactiveX/RxAndroid
+
+## Retrofit
+http://square.github.io/retrofit/
 
 ## Realm Browser for Mac
 https://itunes.apple.com/app/realm-browser/id1007457278

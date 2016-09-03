@@ -1,0 +1,9 @@
+<!--
+  ~ Copyright (c) 2016.
+  -->
+
+<resources>
+    <string name="app_name">MoniGarr Repos</string>
+    <string name="username">username</string>
+    <string name="search">search</string>
+</resources>
